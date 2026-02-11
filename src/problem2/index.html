@@ -1,27 +1,140 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fancy Form</title>
-
-  <!-- You may add more stuff here -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Currency Swap</title>
   <link href="style.css" rel="stylesheet" />
 </head>
 
 <body>
+  <main class="wrap">
+    <section class="card">
+      <header class="header">
+        <div>
+          <h1>Swap</h1>
+          <p class="sub">Swap assets instantly using live prices.</p>
+        </div>
+        <div class="pill" id="pill-status" aria-live="polite">Live</div>
+      </header>
 
-  <!-- You may reorganise the whole HTML, as long as your form achieves the same effect. -->
-  <form onsubmit="return !1">
-    <h5>Swap</h5>
-    <label for="input-amount">Amount to send</label>
-    <input id="input-amount" />
+      <form id="swap-form" novalidate>
+        <!-- SEND -->
+        <div class="panel">
+          <div class="panel-top">
+            <label for="input-amount">You send</label>
+            <div class="mini">
+              <span class="muted" id="balance-from">Balance: —</span>
+              <button type="button" class="link" id="btn-max">Max</button>
+            </div>
+          </div>
 
-    <label for="output-amount">Amount to receive</label>
-    <input id="output-amount" />
+          <div class="row">
+            <div class="token-select">
+              <button type="button" class="token-btn" id="from-token-btn" aria-haspopup="listbox" aria-expanded="false">
+                <img class="token-icon" id="from-icon" alt="" />
+                <span class="token-code" id="from-code">—</span>
+                <span class="chev">▾</span>
+              </button>
+              <div class="dropdown" id="from-dropdown" role="listbox" aria-label="Select token to send"></div>
+            </div>
 
-    <button>CONFIRM SWAP</button>
-  </form>
+            <div class="amount">
+              <input
+                id="input-amount"
+                inputmode="decimal"
+                autocomplete="off"
+                placeholder="0.00"
+                aria-label="Amount to send"
+              />
+              <div class="hint" id="usd-from">≈ —</div>
+            </div>
+          </div>
+
+          <div class="error" id="error-input" role="alert"></div>
+        </div>
+
+        <!-- SWAP BUTTON -->
+        <div class="swap-mid">
+          <button type="button" class="swap-btn" id="btn-flip" aria-label="Swap send and receive tokens">↕</button>
+          <div class="rate" id="rate-line">Rate: —</div>
+        </div>
+
+        <!-- RECEIVE -->
+        <div class="panel">
+          <div class="panel-top">
+            <label for="output-amount">You receive</label>
+            <div class="mini">
+              <span class="muted" id="balance-to">Balance: —</span>
+              <span class="muted" id="fee-line">Fee: —</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="token-select">
+              <button type="button" class="token-btn" id="to-token-btn" aria-haspopup="listbox" aria-expanded="false">
+                <img class="token-icon" id="to-icon" alt="" />
+                <span class="token-code" id="to-code">—</span>
+                <span class="chev">▾</span>
+              </button>
+              <div class="dropdown" id="to-dropdown" role="listbox" aria-label="Select token to receive"></div>
+            </div>
+
+            <div class="amount">
+              <input
+                id="output-amount"
+                inputmode="decimal"
+                autocomplete="off"
+                placeholder="0.00"
+                aria-label="Amount to receive"
+                disabled
+              />
+              <div class="hint" id="usd-to">≈ —</div>
+            </div>
+          </div>
+
+          <div class="error" id="error-output" role="alert"></div>
+        </div>
+
+        <!-- DETAILS -->
+        <div class="details">
+          <div class="detail-row">
+            <span class="muted">Slippage tolerance</span>
+            <div class="right">
+              <button type="button" class="chip" data-slip="0.1">0.1%</button>
+              <button type="button" class="chip active" data-slip="0.5">0.5%</button>
+              <button type="button" class="chip" data-slip="1">1%</button>
+              <button type="button" class="chip" data-slip="2">2%</button>
+            </div>
+          </div>
+
+          <div class="detail-row">
+            <span class="muted">Minimum received</span>
+            <span class="mono" id="min-received">—</span>
+          </div>
+
+          <div class="detail-row">
+            <span class="muted">Price impact (mock)</span>
+            <span class="mono" id="price-impact">—</span>
+          </div>
+        </div>
+
+        <button class="primary" id="btn-submit" type="submit">
+          <span class="btn-text" id="btn-text">Confirm swap</span>
+          <span class="spinner" id="spinner" aria-hidden="true"></span>
+        </button>
+
+        <p class="foot muted" id="footnote">
+          Prices fetched from <span class="mono">/prices.json</span>. Tokens without prices are omitted.
+        </p>
+      </form>
+    </section>
+
+    <footer class="footer muted">
+      Tip: try entering an amount, use Max, then flip tokens.
+    </footer>
+  </main>
+
   <script src="script.js"></script>
 </body>
-
 </html>
