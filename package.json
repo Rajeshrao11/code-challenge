@@ -1,0 +1,30 @@
+{
+  "name": "code-challenge",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Note that if you fork this repository, your responses may be publicly linked to this repo. Please submit your application along with the solutions attached or linked.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rajeshrao11/code-challenge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rajeshrao11/code-challenge/issues"
+  },
+  "homepage": "https://github.com/Rajeshrao11/code-challenge#readme",
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^5.9.3"
+  }
+}
